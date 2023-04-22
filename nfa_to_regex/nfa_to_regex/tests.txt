@@ -1,0 +1,146 @@
+Site folosit pentru verificare echivalenta regex:
+https://bakkot.github.io/dfa-lib/regeq.html
+
+//https://courses.engr.illinois.edu/cs374/fa2017/extra_notes/01_nfa_to_reg.pdf
+//-- passed --
+//generated: este: ((b|ab*a)|ab*a)(a|b)*
+//expected: (ab*a|b)(a|b)*
+1
+1
+3
+6
+1 a 2
+2 b 2
+2 a 3
+1 b 3
+3 a 3
+3 b 3
+
+//ppt curs
+//--- passed ---
+//generated: (b((b|ab)|ab)*(a|b))b*
+//expected: (bb*a)*bb*(a|b)b*
+1
+1
+3
+6
+1 b 2
+2 a 1
+2 b 2
+2 a 3
+2 b 3
+3 b 3
+
+//youtube: https://www.youtube.com/watch?v=UKYvP8aS7fM
+//--- passed ---
+//generated: (((a(ba)*)|a(ba)*a(aa(ba)*a)*((b|aa(ba)*)|aa(ba)*))|a(ba)*a(aa(ba)*a)*((b|aa(ba)*)|aa(ba)*))a*
+//expected: a((b|aa)a)*(a*|aba*)
+1
+1
+4
+7
+1 a 2
+2 b 1
+3 a 1
+2 a 3
+2 $ 4
+3 b 4
+4 a 4
+
+//TO DO: stare initiala si finala
+//-- passed --
+1
+1
+3
+4
+1 $ 2
+2 $ 1
+2 $ 3
+1 $ 3
+
+// GATE | GATE-CS-2007 | Question 74							
+//https://www.geeksforgeeks.org/gate-gate-cs-2007-question-74/
+//-- passed --		--> the checker doesn't accept $
+//generated: ((b*ab*)|b*ab*a((((((b|ab*a)|ab*a)|ab*a)|ab*a)|ab*a)|ab*a)*(($|ab*)|ab*))|b*ab*a((((((b|ab*a)|ab*a)|ab*a)|ab*a)|ab*a)|ab*a)*(($|ab*)|ab*)
+//expected: b*a(a|b)*
+1
+2
+2
+3
+8
+1 b 1
+2 b 2
+1 a 2
+2 a 3
+3 a 2
+3 b 3
+4 a 2
+4 b 3
+
+// GATE | GATE-CS-2014-(Set-1) | Question 65 
+//-- passed -- 
+//generated: a*b((b|aa*b)|aa*b)*
+//expected: a*b(b|aa*b)* or (a|b)*b
+1
+1
+2
+4
+1 a 1
+1 b 2
+2 b 2
+2 a 1
+
+// GATE IT 2006, Question 5 
+//-- passed -- 
+//generated: ((((a|b)*a)(a|b))b)
+//expected: (a|b)*a(a|b)b
+1
+1
+4
+6
+1 a 1
+1 b 1
+1 a 2
+2 a 3
+2 b 3
+3 b 4
+
+// GATE | GATE CS 2012 | Question 12 (reformulat)
+//-- passed -- 
+//generated: (a|aa*a)|aa*a
+//expected: aa*
+1
+1
+2
+3
+1 a 2
+2 $ 3
+3 $ 1
+
+//https://www.codingninjas.com/codestudio/library/nfa-to-regular-expression
+//--passed-- 
+//generated: (a*a((b|ba*a)|ba*a)*a)(b((b|ba*a)|ba*a)*a)*
+//expected: (a|(a(b|ab)*)b)*a(b|ab)*a
+1
+1
+3
+6
+1 a 1
+1 a 2
+2 b 1
+2 b 2
+2 a 3
+3 b 2
+
+//https://condor.depaul.edu/glancast/444class/docs/lecOct02.html#slide25
+//-- fail conform solutiei, dar corect -- 
+//generated: (a*)|(a*(b|a))(ba*(b|a))*ba*
+//expected: a*(a|b)ba*|a*
+1
+1
+1
+4
+1 a 1
+1 a 2
+1 b 2
+2 b 1
